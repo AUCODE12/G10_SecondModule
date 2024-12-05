@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1;
+﻿using ConsoleApp1.Services;
+
+namespace ConsoleApp1;
 
 internal class Program
 {
@@ -28,11 +30,38 @@ internal class Program
 
             if (userName == "student1" && password == "student1")
             {
+                var tests = new TestService();
                 Console.WriteLine("Salom, Student1");
                 Console.WriteLine();
-                Console.WriteLine("1. Test yechish");
+                Console.WriteLine("1. Test ishlash");
+                Console.WriteLine("2. Tarixni ko'rish");
+                Console.WriteLine();
+                Console.WriteLine("0. LogInga o'tishi");
+                Console.WriteLine();
+                Console.Write("Enter option: ");
+                var option = int.Parse(Console.ReadLine());
+                if (option == 0)
+                {
+                    Console.Clear();
+                    goto again;
+                }
+                else if (option == 1)
+                {
+                    Console.Write("Nechta test yechasiz: ");
+                    var amount = int.Parse(Console.ReadLine());
+                    Console.WriteLine();
+                    var testsList = tests.GetRandomTest(amount);
+                    var countTest = 1;
+                    foreach (var test in testsList)
+                    {
+                        var testInfo = $"{countTest}: {test.Question} \nA: {test.AVariant} \nB: {test.BVariant} \nC: {test.CVariant}";
+                        Console.WriteLine(testInfo);
+                    }
+                }
+                else if (option == 2)
+                {
 
-
+                }
             }
             else if (userName == "student2" && password == "student2")
             {

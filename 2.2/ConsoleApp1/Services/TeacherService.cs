@@ -3,11 +3,11 @@ using System.Text.Json;
 
 namespace ConsoleApp1.Services;
 
-public class TeacherServices
+public class TeacherService
 {
     private string teacherFilePath;
 
-    public TeacherServices()
+    public TeacherService()
     {
         teacherFilePath = "../../../Data/Teachers.json";
         if (File.Exists(teacherFilePath) is false)

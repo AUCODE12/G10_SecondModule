@@ -3,11 +3,11 @@ using System.Text.Json;
 
 namespace ConsoleApp1.Services;
 
-public class StudentServices
+public class StudentService
 {
     private string studentFilePath;
 
-    public StudentServices()
+    public StudentService()
     {
         studentFilePath = "../../../Data/Students.json";
         File.WriteAllText(studentFilePath, "[]");

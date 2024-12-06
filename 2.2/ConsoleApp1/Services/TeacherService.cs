@@ -61,9 +61,13 @@ public class TeacherService
         {
             return false;
         }
-        var index = teachers.IndexOf(newTeacher);
+        var index = teachers.IndexOf(teacherFromDb);
+        if (index == -1)
+        {
+            return false;
+        }
         teachers[index] = newTeacher;
-
+        SaveDate(teachers);
         return true;
     }
 

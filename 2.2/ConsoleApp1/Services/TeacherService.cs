@@ -48,8 +48,17 @@ public class TeacherService
         {
             return false;
         }
-        teachers.Remove(teacherFromDb);
 
+        foreach (var teacher in teachers)
+        {
+            if(teacher.Id == teacherId)
+            {
+                teachers.Remove(teacher);
+                break;
+            }
+        }
+
+        SaveDate(teachers);
         return true;
     }
 
@@ -61,12 +70,16 @@ public class TeacherService
         {
             return false;
         }
-        var index = teachers.IndexOf(teacherFromDb);
-        if (index == -1)
+
+        for (var i = 0; i < teachers.Count; i++)
         {
-            return false;
+            if (teachers[i].Id == newTeacher.Id)
+            {
+                teachers[i] = newTeacher;
+                break;
+            }
         }
-        teachers[index] = newTeacher;
+
         SaveDate(teachers);
         return true;
     }

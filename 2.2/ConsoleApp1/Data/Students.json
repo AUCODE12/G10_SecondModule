@@ -1,1 +1,12 @@
-[{"Id":"1fcb7cf9-0732-4006-b260-68667c589b6a","FirstName":"Ahmadjon","LastName":"Qudratov","Age":17,"Degree":"G-10","Gender":"Erkak","Results":null}]
+[
+  {
+    "Id": "1fcb7cf9-0732-4006-b260-68667c589b6a",
+    "FirstName": "Ahmadjon",
+    "LastName": "Qudratov",
+    "Age": 17,
+    "Degree": "G-10",
+    "Gender": "Erkak",
+    "Results": null
+  }
+
+]

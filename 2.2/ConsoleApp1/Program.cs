@@ -1,6 +1,5 @@
 ﻿using ConsoleApp1.Models;
 using ConsoleApp1.Services;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ConsoleApp1;
 
@@ -25,6 +24,11 @@ internal class Program
         Console.Clear();
     }
     static void Main(string[] args)
+    {
+        StartFrontEnd();
+    }
+
+    public static void StartFrontEnd()
     {
         while (true)
         {
@@ -246,7 +250,7 @@ internal class Program
                     teacher.Gender = Console.ReadLine();
 
                     teacherService.AddTeacher(teacher);
-                    
+
                     done();
                     goto backDirectorPanel;
                 }

@@ -50,8 +50,14 @@ public class TestService
         {
             return false;
         }
-        var index = tests.IndexOf(testFromDb);
-        tests[index] = newTest;
+        for (var i = 0; i < tests.Count; i++)
+        {
+            if (tests[i].Id == newTest.Id)
+            {
+                tests[i] = newTest;
+                break;
+            }
+        }
         SaveData(tests);
         
         return true;
@@ -65,7 +71,14 @@ public class TestService
         {
             return false;
         }
-        tests.Remove(testFromDb);
+        foreach (var test in tests)
+        {
+            if (test.Id == testId)
+            {
+                tests.Remove(test);
+                break;
+            }
+        }
         SaveData(tests);
 
         return true;

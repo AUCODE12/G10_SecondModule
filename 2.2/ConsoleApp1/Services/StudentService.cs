@@ -44,9 +44,16 @@ public class StudentService
         {
             return false;
         }
-
-        students.Remove(studentFromDb);
+        foreach (var student in students)
+        {
+            if (student.Id == studentId)
+            {
+                students.Remove(student);
+                break;
+            }
+        }
         SaveData(students);
+
         return true;
     }
 
@@ -58,10 +65,16 @@ public class StudentService
         {
             return false;
         }
-
-        var index = students.IndexOf(student);
-        students[index] = student;
+        for (var i = 0; i < students.Count; i++)
+        {
+            if (students[i].Id == student.Id)
+            {
+                students[i] = student;
+                break;
+            }
+        }
         SaveData(students);
+        
         return true;
     }
 

@@ -3,38 +3,70 @@ using System.Text.Json;
 
 namespace ConsoleApp1.Services;
 
-public class TestService
+public class TestService : ITestService
 {
     private string testFilePath;
+    private List<Test> _tests;
 
     public TestService()
     {
-        testFilePath = "../../../Data/Tests.json";
+        testFilePath = "../../../Data/Test.json";
+
         if (File.Exists(testFilePath) is false)
         {
             File.WriteAllText(testFilePath, "[]");
         }
+
+        _tests = new List<Test>();
+        _tests = GetAllTests();
     }
 
     public Test AddTest(Test test)
     {
         test.Id = Guid.NewGuid();
-        var tests = GetTests();
-        tests.Add(test);
-        SaveData(tests);
-
+        _tests.Add(test);
+        SaveData();
         return test;
     }
 
-    public Test GetTestById(Guid id)
+    public Test GetById(Guid testId)
     {
-        var tests = GetTests();
-        foreach (var test in tests)
+        foreach (var test in _tests)
         {
-            if (test.Id == id) return test;
+            if (test.Id == testId)
+            {
+                return test;
+            }
         }
 
         return null;
+    }
+
+    public bool DeleteTest(Guid testId)
+    {
+        var testFromDb = GetById(testId);
+        if (testFromDb is null)
+        {
+            return false;
+        }
+
+        _tests.Remove(testFromDb);
+        SaveData();
+        return true;
+    }
+
+    public bool UpdateTest(Test test)
+    {
+        var testFromDb = GetById(test.Id);
+        if (testFromDb is null)
+        {
+            return false;
+        }
+
+        var index = _tests.IndexOf(testFromDb);
+        _tests[index] = test;
+        SaveData();
+        return true;
     }
 
     public List<Test> GetAllTests()
@@ -42,69 +74,31 @@ public class TestService
         return GetTests();
     }
 
-    public bool UpdateTest(Test newTest)
+    public List<Test> GetRandomTests(int count)
     {
-        var tests = GetAllTests();
-        var testFromDb = GetTestById(newTest.Id);
-        if (testFromDb is null)
+        if (count >= _tests.Count)
         {
-            return false;
+            return _tests;
         }
-        for (var i = 0; i < tests.Count; i++)
+
+        var randomTests = new List<Test>();
+        var rand = new Random();
+        for (var i = 0; i < count;)
         {
-            if (tests[i].Id == newTest.Id)
+            var option = rand.Next(0, _tests.Count);
+            if (randomTests.Contains(_tests[option]) is false)
             {
-                tests[i] = newTest;
-                break;
+                randomTests.Add(_tests[option]);
+                i++;
             }
         }
-        SaveData(tests);
-        
-        return true;
+
+        return randomTests;
     }
 
-    public bool DeleteTest(Guid testId)
+    private void SaveData()
     {
-        var tests = GetTests();
-        var testFromDb = GetTestById(testId);
-        if (testFromDb is null)
-        {
-            return false;
-        }
-        foreach (var test in tests)
-        {
-            if (test.Id == testId)
-            {
-                tests.Remove(test);
-                break;
-            }
-        }
-        SaveData(tests);
-
-        return true;
-    }
-
-    public List<Test> GetRandomTest(int amount)
-    {
-        var tests = GetTests();
-        var getAmountListTests = new List<Test>();
-        for (var i = 0; i < amount; i++)
-        {
-            var index = new Random().Next(0, tests.Count);
-            getAmountListTests.Add(tests[index]);
-        }
-
-        return getAmountListTests;
-    }
-
-    public int GetAmountTests()
-    {
-        return GetTests().Count;
-    }
-    
-    private void SaveData(List<Test> tests)
-    {
-        var testsJson = JsonSerializer.Serialize(tests);
+        var testsJson = JsonSerializer.Serialize(_tests);
         File.WriteAllText(testFilePath, testsJson);
     }
 
@@ -112,7 +106,6 @@ public class TestService
     {
         var testsJson = File.ReadAllText(testFilePath);
         var tests = JsonSerializer.Deserialize<List<Test>>(testsJson);
-
         return tests;
     }
 }

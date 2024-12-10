@@ -3,33 +3,35 @@ using System.Text.Json;
 
 namespace ConsoleApp1.Services;
 
-public class TeacherService
+public class TeacherService : ITeacherService
 {
     private string teacherFilePath;
+    private List<Teacher> _teachers;
 
     public TeacherService()
     {
         teacherFilePath = "../../../Data/Teachers.json";
+
         if (File.Exists(teacherFilePath) is false)
         {
             File.WriteAllText(teacherFilePath, "[]");
         }
+
+        _teachers = new List<Teacher>();
+        _teachers = GetAllTeachers();
     }
 
     public Teacher AddTeacher(Teacher teacher)
     {
         teacher.Id = Guid.NewGuid();
-        var teachers = GetTeachers();
-        teachers.Add(teacher);
-        SaveDate(teachers);
-
+        _teachers.Add(teacher);
+        SaveData();
         return teacher;
     }
 
-    public Teacher GetByIdTeacher(Guid teacherId)
+    public Teacher GetById(Guid teacherId)
     {
-        var teachers = GetTeachers();
-        foreach (var teacher in teachers)
+        foreach (var teacher in _teachers)
         {
             if (teacher.Id == teacherId)
             {
@@ -42,45 +44,28 @@ public class TeacherService
 
     public bool DeleteTeacher(Guid teacherId)
     {
-        var teachers = GetTeachers();
-        var teacherFromDb = GetByIdTeacher(teacherId);
+        var teacherFromDb = GetById(teacherId);
         if (teacherFromDb is null)
         {
             return false;
         }
 
-        foreach (var teacher in teachers)
-        {
-            if(teacher.Id == teacherId)
-            {
-                teachers.Remove(teacher);
-                break;
-            }
-        }
-        SaveDate(teachers);
-
+        _teachers.Remove(teacherFromDb);
+        SaveData();
         return true;
     }
 
-    public bool UpdateTeacher(Teacher newTeacher)
+    public bool UpdateTeacher(Teacher teacher)
     {
-        var teachers = GetTeachers();
-        var teacherFromDb = GetByIdTeacher(newTeacher.Id);
+        var teacherFromDb = GetById(teacher.Id);
         if (teacherFromDb is null)
         {
             return false;
         }
 
-        for (var i = 0; i < teachers.Count; i++)
-        {
-            if (teachers[i].Id == newTeacher.Id)
-            {
-                teachers[i] = newTeacher;
-                break;
-            }
-        }
-
-        SaveDate(teachers);
+        var index = _teachers.IndexOf(teacherFromDb);
+        _teachers[index] = teacher;
+        SaveData();
         return true;
     }
 
@@ -89,9 +74,9 @@ public class TeacherService
         return GetTeachers();
     }
 
-    private void SaveDate(List<Teacher> teachers)
+    private void SaveData()
     {
-        var teachersJson = JsonSerializer.Serialize(teachers);
+        var teachersJson = JsonSerializer.Serialize(_teachers);
         File.WriteAllText(teacherFilePath, teachersJson);
     }
 
@@ -99,7 +84,6 @@ public class TeacherService
     {
         var teachersJson = File.ReadAllText(teacherFilePath);
         var teachers = JsonSerializer.Deserialize<List<Teacher>>(teachersJson);
-
         return teachers;
     }
 }

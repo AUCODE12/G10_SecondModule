@@ -5,11 +5,8 @@ namespace ConsoleApp1;
 
 internal class Program
 {
-    private static string student1UserName = "student1";
-    private static string student1Password = "student1";
-
-    private static string student2UserName = "student2";
-    private static string student2Password = "student2";
+    private static string studentUserName = "student";
+    private static string studentPassword = "student";
 
     private static string teacherUserName = "teacher";
     private static string teacherPassword = "teacher";
@@ -17,14 +14,67 @@ internal class Program
     private static string directorUserName = "director";
     private static string directorPassword = "director";
 
-    public static void done()
-    {
-        Console.Write("\nDone");
-        Thread.Sleep(1500);
-        Console.Clear();
-    }
+
     static void Main(string[] args)
     {
+        /*
+        //YourClass yourClass = new YourClass();
+        //yourClass.Do();
+        //yourClass.Do1();
+        //yourClass.Do2();
+
+        //MyClass myClass = new YourClass();
+
+        //myClass.Do();
+        //myClass.Do1();
+        //myClass.Do2();
+
+
+        //int number;
+        //var consoleValue = Console.ReadLine();
+        //int.TryParse(consoleValue, out number);
+
+        //Console.WriteLine(number);
+
+        //int number = int.Parse(Console.ReadLine());
+        //Console.WriteLine(number);
+
+
+
+        //var student1 = new Student()
+        //{
+        //    FirstName = "Ali",
+        //    LastName = "Vali",
+        //    Age = 20,
+        //    Degree = "3",
+        //    Gender = "men",
+        //};
+
+        //var student2 = new Student()
+        //{
+        //    FirstName = "WWW",
+        //    LastName = "AAA",
+        //    Age = 20,
+        //    Degree = "3",
+        //    Gender = "men",
+        //};
+
+        //var studentService = new StudentService();
+        ////studentService.AddStudent(student1);
+        ////studentService.AddStudent(student2);
+
+        //var students = studentService.GetAllStudents();
+
+        //Console.WriteLine(students[0].Id + " " + students[0].FirstName);
+        //Console.WriteLine(students[1].Id + " " + students[1].FirstName);
+
+        //studentService.DeleteStudent(students[1].Id);
+
+        //var newStudents = studentService.GetAllStudents();
+
+        //var a = 5;
+        */
+        
         StartFrontEnd();
     }
 
@@ -32,335 +82,324 @@ internal class Program
     {
         while (true)
         {
-        again:
-            Console.WriteLine("--------------- Log in ---------------");
-            Console.WriteLine();
-            Console.Write("Enter UserName: ");
+            Console.Clear();
+            Console.WriteLine("0. Stop");
+            Console.WriteLine("1. Login");
+            Console.Write("Enter : ");
+            var option = Console.ReadLine();
+
+            if (option == "0")
+            {
+                Console.WriteLine("thanks");
+                return;
+            }
+            else if (option == "1")
+            {
+                LoginPage();
+            }
+        }
+    }
+
+    public static void LoginPage()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.Write("Enter user name :");
             var userName = Console.ReadLine();
-            Console.Write("Enter Password: ");
+            Console.Write("Enter password  :");
             var password = Console.ReadLine();
 
-            if (userName == "student1" && password == "student1")
-            {
-                //var tests = new TestService();
-                //Console.WriteLine("Salom, Student1");
-                //Console.WriteLine();
-                //Console.WriteLine("1. Test ishlash");
-                //Console.WriteLine("2. Tarixni ko'rish");
-                //Console.WriteLine();
-                //Console.WriteLine("0. LogInga o'tishi");
-                //Console.WriteLine();
-                //Console.Write("Enter option: ");
-                //var option = int.Parse(Console.ReadLine());
-                //if (option == 0)
-                //{
-                //    Console.Clear();
-                //    goto again;
-                //}
-                //else if (option == 1)
-                //{
-                //    Console.Write("Nechta test yechasiz: ");
-                //    var amount = int.Parse(Console.ReadLine());
-                //    Console.WriteLine();
-                //    var testsList = tests.GetRandomTest(amount);
-                //    var countTest = 1;
-                //    foreach (var test in testsList)
-                //    {
-                //        var testInfo = $"{countTest}: {test.Question} \nA: {test.AVariant} \nB: {test.BVariant} \nC: {test.CVariant}";
-                //        Console.WriteLine(testInfo);
-                //    }
-                //}
-                //else if (option == 2)
-                //{
 
-                //}
-            }
-            else if (userName == "student2" && password == "student2")
+            if (userName == directorUserName && password == directorPassword)
             {
+                RunDirector();
+            }
+            else if (userName == teacherUserName && password == teacherPassword)
+            {
+                RunTeacher();
+            }
+            else if (userName == studentUserName && password == studentPassword)
+            {
+                RunStudent();
+            }
 
-            }
-            else if (userName == "teacher" && password == "teacher")
+        }
+    }
+
+    public static void RunDirector()
+    {
+        ITeacherService teacherService = new TeacherService();
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("1. Add Teacher");
+            Console.WriteLine("2. Get Teachers");
+            Console.WriteLine("3. Get by id Teacher");
+            Console.WriteLine("4. Update Teacher");
+            Console.WriteLine("5. Delete Teacher");
+            Console.WriteLine("\nBack (0)");
+            Console.WriteLine();
+            Console.Write("Enter option: ");
+            var option = int.Parse(Console.ReadLine());
+
+            if (option == 0)
             {
-                // Student Crud
-                var studentService = new StudentService();
+                return;
+            }
+            else if (option == 1)
+            {
                 Console.Clear();
-            backTeacherPanel:
-                Console.WriteLine("Salom, Teacher!");
+                var teacher = new Teacher();
+                Console.WriteLine("--------------- Teacher About ---------------");
                 Console.WriteLine();
-                Console.WriteLine("1. Add Student");
-                Console.WriteLine("2. Get Student");
-                Console.WriteLine("3. Get by id Student");
-                Console.WriteLine("4. Update Student");
-                Console.WriteLine("5. Delete Student");
-                Console.WriteLine("\nBack (0)");
+                Console.Write("First Name: ");
+                teacher.FirstName = Console.ReadLine();
+                Console.Write("Last Name: ");
+                teacher.LastName = Console.ReadLine();
+                Console.Write("Age Name: ");
+                teacher.Age = int.Parse(Console.ReadLine());
+                Console.Write("Subject: ");
+                teacher.Subject = Console.ReadLine();
+                Console.Write("Gender: ");
+                teacher.Gender = Console.ReadLine();
+
+                teacherService.AddTeacher(teacher);
+            }
+            else if (option == 2)
+            {
+                //Console.Clear();
+                var teachers = teacherService.GetAllTeachers();
+                var count = 1;
+                Console.WriteLine("--------------- O'qituvchilar ro'yxati ---------------\n");
+                foreach (var teacher in teachers)
+                {
+                    var teacherInfo = $"{count}) First Name: {teacher.FirstName} \nLast Name: {teacher.LastName} \nSubject: {teacher.Subject} \nAge: {teacher.Age} \nGender: {teacher.Gender}";
+                    Console.WriteLine($"{teacherInfo} \n");
+                    count++;
+                }
+            }
+            else if (option == 3)
+            {
+                Console.Clear();
+                Console.Write("Enter get Id: ");
+                var id = Guid.Parse(Console.ReadLine());
+                var teacher = teacherService.GetById(id);
+                Console.WriteLine("\n--------------- O'qituvchi ---------------\n");
+                var teacherInfo = $"First Name: {teacher.FirstName} \nLast Name: {teacher.LastName} \nSubject: {teacher.Subject} \nAge: {teacher.Age} \nGender: {teacher.Gender}";
+                Console.WriteLine($"{teacherInfo}");
+            }
+            else if (option == 4)
+            {
+                Console.Clear();
+                var newTeacher = new Teacher();
+                Console.WriteLine("--------------- Teacher About ---------------");
                 Console.WriteLine();
-                Console.Write("Enter option: ");
-                var option = int.Parse(Console.ReadLine());
+                Console.Write("Enter Id: ");
+                newTeacher.Id = Guid.Parse(Console.ReadLine());
+                Console.Write("First Name: ");
+                newTeacher.FirstName = Console.ReadLine();
+                Console.Write("Last Name: ");
+                newTeacher.LastName = Console.ReadLine();
+                Console.Write("Age: ");
+                newTeacher.Age = int.Parse(Console.ReadLine());
+                Console.Write("Subject: ");
+                newTeacher.Subject = Console.ReadLine();
+                Console.Write("Gender: ");
+                newTeacher.Gender = Console.ReadLine();
 
-                if (option == 1)
-                {
-                    Console.Clear();
-                    var student = new Student();
-                    Console.WriteLine("--------------- Student About ---------------");
-                    Console.WriteLine();
-                    Console.Write("First Name: ");
-                    student.FirstName = Console.ReadLine();
-                    Console.Write("Last Name: ");
-                    student.LastName = Console.ReadLine();
-                    Console.Write("Age Name: ");
-                    student.Age = int.Parse(Console.ReadLine());
-                    Console.Write("Degree: ");
-                    student.Degree = Console.ReadLine();
-                    Console.Write("Gender: ");
-                    student.Gender = Console.ReadLine();
+                var request = teacherService.UpdateTeacher(newTeacher);
+            }
+            else if (option == 5)
+            {
+                Console.Clear();
+                Console.WriteLine("--------------- Teacher Delete ---------------");
+                Console.WriteLine();
+                Console.Write("Enter Id: ");
+                var deleteId = Guid.Parse(Console.ReadLine());
 
-                    studentService.AddStudent(student);
+                teacherService.DeleteTeacher(deleteId);
+            }
 
-                    done();
-                    goto backTeacherPanel;
-                }
-                else if (option == 2)
-                {
-                    Console.Clear();
-                    var students = studentService.GetAllStudents();
-                    var count = 1;
-                    Console.WriteLine("--------------- O'quvchilar ro'yxati ---------------\n");
-                    foreach (var student in students)
-                    {
-                        var studentInfo = $"{count}) First Name: {student.FirstName} \nLast Name: {student.LastName} \nDegree: {student.Degree} \nAge: {student.Age} \nGender: {student.Gender}";
-                        Console.WriteLine($"{studentInfo} \n");
-                        count++;
-                    }
-                    Console.Write("\nBack (0): ");
-                    var optionBack = int.Parse(Console.ReadLine());
-                    if (optionBack == 0)
-                    {
-                        Console.Clear();
-                        goto backTeacherPanel;
-                    }
-                }
-                else if (option == 3)
-                {
-                    Console.Clear();
-                    Console.Write("Enter get Id: ");
-                    var id = Guid.Parse(Console.ReadLine());
-                    Console.Clear();
-                    Console.WriteLine("--------------- Student ---------------\n");
-                    var student = studentService.GetById(id);
-                    var studentInfo = $"First Name: {student.FirstName} \nLast Name: {student.LastName} \nDegree: {student.Degree} \nAge: {student.Age} \nGender: {student.Gender}";
-                    Console.WriteLine(studentInfo);
-                    Console.Write("\nBack (0): ");
-                    var optionBack = int.Parse(Console.ReadLine());
-                    if (optionBack == 0)
-                    {
-                        Console.Clear();
-                        goto backTeacherPanel;
-                    }
-                }
-                else if (option == 4)
-                {
-                    Console.Clear();
-                    var newStudent = new Student();
-                    Console.WriteLine("--------------- Student About ---------------");
-                    Console.WriteLine();
-                    Console.Write("Enter Id: ");
-                    newStudent.Id = Guid.Parse(Console.ReadLine());
-                    Console.Write("First Name: ");
-                    newStudent.FirstName = Console.ReadLine();
-                    Console.Write("Last Name: ");
-                    newStudent.LastName = Console.ReadLine();
-                    Console.Write("Age Name: ");
-                    newStudent.Age = int.Parse(Console.ReadLine());
-                    Console.Write("Degree: ");
-                    newStudent.Degree = Console.ReadLine();
-                    Console.Write("Gender: ");
-                    newStudent.Gender = Console.ReadLine();
+            Console.ReadKey();
+        }
+    }
 
-                    var request = studentService.UpdateStudent(newStudent);
-                    if (request is true)
+    public static void RunStudent()
+    {
+        ITeacherService teacherService = new TeacherService();
+        IStudentService studentService = new StudentService();
+        ITestService testService = new TestService();
+        Console.Write("Enter id :");
+        Guid id;
+        Guid.TryParse(Console.ReadLine(), out id);
+        var student = studentService.GetById(id);
+
+        while (true)
+        {
+            Console.WriteLine("1. Start test");
+            Console.WriteLine("2. Like teacher");
+            Console.WriteLine("3. Dislike teacher");
+            Console.Write("Enter option :");
+            var option = Console.ReadLine();
+
+            if (option == "1")
+            {
+                Console.Clear();
+                Console.Write("How many test you want to do :");
+                var amount = int.Parse(Console.ReadLine());
+
+                var tests = testService.GetRandomTests(amount);
+                var correctAnswers = 0;
+                foreach (var test in tests)
+                {
+                    Console.WriteLine(test.QuestionText);
+                    Console.WriteLine($"A) {test.AVariant}");
+                    Console.WriteLine($"B) {test.BVariant}");
+                    Console.WriteLine($"C) {test.CVariant}");
+
+                    Console.Write("Choose answer A/B/C : ");
+                    var answer = Console.ReadLine();
+                    if (test.Answer == answer)
                     {
-                        done();
-                        goto backTeacherPanel;
+                        correctAnswers++;
+                        Console.WriteLine("Correct");
                     }
                     else
                     {
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Xatolik!!!\n");
-                        Console.ResetColor();
-                        Console.Write("Orqaga qaytish uchun xohlagan tugmani bosing: ");
-                        //Thread.Sleep(1000);
-                        Console.ReadLine();
-                        Console.Clear();
-                        goto backTeacherPanel;
+                        Console.WriteLine($"Incorrect, correct answer is : {test.Answer}");
                     }
                 }
-                else if (option == 5)
-                {
-                    Console.Clear();
-                    Console.WriteLine("--------------- Student Delete ---------------");
-                    Console.WriteLine();
-                    Console.Write("Enter Id: ");
-                    var deleteId = Guid.Parse(Console.ReadLine());
-                    studentService.DeleteStudent(deleteId);
-                    Console.Write("\nDone");
-                    Thread.Sleep(1500);
-                    Console.Clear();
-                    goto backTeacherPanel;
-                }
-                else if (option == 0)
-                {
-                    Console.Clear();
-                    goto again;
-                }
+
+                var res = correctAnswers * 100d / tests.Count;
+                student.Results.Add(res);
+                studentService.UpdateStudent(student);
+                Console.WriteLine($"Final answer : {res}%");
+                Console.ReadKey();
             }
-            else if (userName == "director" && password == "director")
+
+        }
+    }
+
+    public static void RunTeacher()
+    {
+        IStudentService studentService = new StudentService();
+        ITestService testService = new TestService();
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("0. Quit");
+            Console.WriteLine("1. Add test");
+            Console.WriteLine("2. Delete test");
+            Console.WriteLine("3. Read tests");
+            Console.WriteLine("4. Get by id");
+            Console.WriteLine("5. Update test");
+            Console.WriteLine("6. Get random tests");
+            Console.Write("enter : ");
+            var option = Console.ReadLine();
+
+            if (option == "0")
             {
-                // Teacher Crud
-                var teacherService = new TeacherService();
-                Console.Clear();
-            backDirectorPanel:
-                Console.WriteLine("Salom, Director!");
-                Console.WriteLine();
-                Console.WriteLine("1. Add Teacher");
-                Console.WriteLine("2. Get Teacher");
-                Console.WriteLine("3. Get by id Teacher");
-                Console.WriteLine("4. Update Teacher");
-                Console.WriteLine("5. Delete Teacher");
-                Console.WriteLine("\nBack (0)");
-                Console.WriteLine();
-                Console.Write("Enter option: ");
-                var option = int.Parse(Console.ReadLine());
-
-                if (option == 1)
-                {
-                    Console.Clear();
-                    var teacher = new Teacher();
-                    Console.WriteLine("--------------- Teacher About ---------------");
-                    Console.WriteLine();
-                    Console.Write("First Name: ");
-                    teacher.FirstName = Console.ReadLine();
-                    Console.Write("Last Name: ");
-                    teacher.LastName = Console.ReadLine();
-                    Console.Write("Age Name: ");
-                    teacher.Age = int.Parse(Console.ReadLine());
-                    Console.Write("Subject: ");
-                    teacher.Subject = Console.ReadLine();
-                    Console.Write("Gender: ");
-                    teacher.Gender = Console.ReadLine();
-
-                    teacherService.AddTeacher(teacher);
-
-                    done();
-                    goto backDirectorPanel;
-                }
-                else if (option == 2)
-                {
-                    Console.Clear();
-                    var teachers = teacherService.GetAllTeachers();
-                    var count = 1;
-                    Console.WriteLine("--------------- O'qituvchilar ro'yxati ---------------\n");
-                    foreach (var teacher in teachers)
-                    {
-                        var teacherInfo = $"{count}) First Name: {teacher.FirstName} \nLast Name: {teacher.LastName} \nSubject: {teacher.Subject} \nAge: {teacher.Age} \nGender: {teacher.Gender}";
-                        Console.WriteLine($"{teacherInfo} \n");
-                        count++;
-                    }
-                    Console.Write("\nBack (0): ");
-                    var optionBack = int.Parse(Console.ReadLine());
-                    if (optionBack == 0)
-                    {
-                        Console.Clear();
-                        goto backDirectorPanel;
-                    }
-                }
-                else if (option == 3)
-                {
-                    Console.Clear();
-                    Console.Write("Enter get Id: ");
-                    var id = Guid.Parse(Console.ReadLine());
-                    Console.Clear();
-                    Console.WriteLine("--------------- Teacher ---------------\n");
-                    var teacher = teacherService.GetByIdTeacher(id);
-                    var teacherInfo = $"First Name: {teacher.FirstName} \nLast Name: {teacher.LastName} \nSubject: {teacher.Subject} \nAge: {teacher.Age} \nGender: {teacher.Gender}";
-                    Console.WriteLine(teacherInfo);
-                    Console.Write("\nBack (0): ");
-                    var optionBack = int.Parse(Console.ReadLine());
-                    if (optionBack == 0)
-                    {
-                        Console.Clear();
-                        goto backDirectorPanel;
-                    }
-                }
-                else if (option == 4)
-                {
-                    Console.Clear();
-                    var newTeacher = new Teacher();
-                    Console.WriteLine("--------------- Teacher About ---------------");
-                    Console.WriteLine();
-                    Console.Write("Enter Id: ");
-                    newTeacher.Id = Guid.Parse(Console.ReadLine());
-                    Console.Write("First Name: ");
-                    newTeacher.FirstName = Console.ReadLine();
-                    Console.Write("Last Name: ");
-                    newTeacher.LastName = Console.ReadLine();
-                    Console.Write("Age: ");
-                    newTeacher.Age = int.Parse(Console.ReadLine());
-                    Console.Write("Subject: ");
-                    newTeacher.Subject = Console.ReadLine();
-                    Console.Write("Gender: ");
-                    newTeacher.Gender = Console.ReadLine();
-
-                    var request = teacherService.UpdateTeacher(newTeacher);
-                    if (request is true)
-                    {
-                        done();
-                        goto backDirectorPanel;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Xatolik!!!\n");
-                        Console.ResetColor();
-                        Console.Write("Orqaga qaytish uchun xohlagan tugmani bosing: ");
-                        //Thread.Sleep(1000);
-                        Console.ReadLine();
-                        Console.Clear();
-                        goto backDirectorPanel;
-                    }
-                }
-                else if (option == 5)
-                {
-                    Console.Clear();
-                    Console.WriteLine("--------------- Teacher Delete ---------------");
-                    Console.WriteLine();
-                    Console.Write("Enter Id: ");
-                    var deleteId = Guid.Parse(Console.ReadLine());
-                    teacherService.DeleteTeacher(deleteId);
-                    Console.Write("\nDone");
-                    Thread.Sleep(1500);
-                    Console.Clear();
-                    goto backDirectorPanel;
-                }
-                else if (option == 0)
-                {
-                    Console.Clear();
-                    goto again;
-                }
+                return;
             }
-            else
+            else if (option == "1")
             {
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Bunday foydalanuvchi mavjud emas!!!\n");
-                Console.ResetColor();
-                Console.Write("Qayta kirish uchun xohlagan tugmani bosing:");
-                //Thread.Sleep(1000);
-                Console.ReadLine();
-                Console.Clear();
-                goto again;
+                var test = new Test();
+                Console.Write("Question text :");
+                test.QuestionText = Console.ReadLine();
+
+                Console.Write("A variant :");
+                test.AVariant = Console.ReadLine();
+
+                Console.Write("B variant :");
+                test.BVariant = Console.ReadLine();
+
+                Console.Write("C variant :");
+                test.CVariant = Console.ReadLine();
+
+                Console.Write("Answer A/B/C :");
+                test.Answer = Console.ReadLine();
+
+                testService.AddTest(test);
             }
+            else if (option == "2")
+            {
+                Console.Write("Enter id :");
+                var id = Guid.Parse(Console.ReadLine());
+                testService.DeleteTest(id);
+            }
+            else if (option == "3")
+            {
+                var tests = testService.GetAllTests();
+                foreach (var test in tests)
+                {
+                    Console.WriteLine($"id : {test.Id}");
+                    Console.WriteLine($"Question text : {test.QuestionText}");
+                    Console.WriteLine($"A variant : {test.AVariant}");
+                    Console.WriteLine($"B variant : {test.BVariant}");
+                    Console.WriteLine($"C variant : {test.CVariant}");
+                    Console.WriteLine($"Answer : {test.Answer}");
+                    Console.WriteLine();
+                }
+            }
+            else if (option == "4")
+            {
+                Console.Write("Enter id :");
+                var id = Guid.Parse(Console.ReadLine());
+                var test = testService.GetById(id);
+                Console.WriteLine($"id : {test.Id}");
+                Console.WriteLine($"Question text : {test.QuestionText}");
+                Console.WriteLine($"A variant : {test.AVariant}");
+                Console.WriteLine($"B variant : {test.BVariant}");
+                Console.WriteLine($"C variant : {test.CVariant}");
+                Console.WriteLine($"Answer : {test.Answer}");
+                Console.WriteLine();
+            }
+            else if (option == "5")
+            {
+                var test = new Test();
+
+                Console.Write("Question id :");
+                test.Id = Guid.Parse(Console.ReadLine());
+
+                Console.Write("Question text :");
+                test.QuestionText = Console.ReadLine();
+
+                Console.Write("A variant :");
+                test.AVariant = Console.ReadLine();
+
+                Console.Write("B variant :");
+                test.BVariant = Console.ReadLine();
+
+                Console.Write("C variant :");
+                test.CVariant = Console.ReadLine();
+
+                Console.Write("Answer A/B/C :");
+                test.Answer = Console.ReadLine();
+
+                testService.UpdateTest(test);
+            }
+            else if (option == "6")
+            {
+                Console.Write("Enter :");
+                var choice = int.Parse(Console.ReadLine());
+                var tests = testService.GetRandomTests(choice);
+
+                foreach (var test in tests)
+                {
+                    Console.WriteLine($"id : {test.Id}");
+                    Console.WriteLine($"Question text : {test.QuestionText}");
+                    Console.WriteLine($"A variant : {test.AVariant}");
+                    Console.WriteLine($"B variant : {test.BVariant}");
+                    Console.WriteLine($"C variant : {test.CVariant}");
+                    Console.WriteLine($"Answer : {test.Answer}");
+                    Console.WriteLine();
+                }
+            }
+
+            Console.ReadKey();
         }
     }
 }

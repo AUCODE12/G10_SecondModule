@@ -428,7 +428,7 @@ internal class Program
     public static void RunStudent()
     {
         var testService = new TestService();
-        var studentService = new StudentService();
+        var studentService = new StudentService();  
 
         while (true)
         {
@@ -438,13 +438,14 @@ internal class Program
             Console.WriteLine("2. Test tarixini ko'rish");
             Console.WriteLine();
             Console.Write("Enter: ");
-            var fourthOption = Console.ReadLine();
+            var fourthOption = int.Parse(Console.ReadLine());
+            var studentModels = new Student();
 
-            if (fourthOption == "0")
+            if (fourthOption == 0)
             {
                 return;
             }
-            else if (fourthOption == "1")
+            else if (fourthOption == 1)
             {
                 Console.Clear();
                 Console.Write("Nechta test ishlaysiz: ");
@@ -467,23 +468,24 @@ internal class Program
                     }
                     count++;
                 }
-                var studentModels = new Student();
                 studentModels.Results.Add(resultCount);
             }
-            else if (fourthOption == "2")
+            else if (fourthOption == 2)
             {
                 Console.Clear();
                 Console.WriteLine("                      Result");
                 Console.WriteLine();
-                var student = new Student();
+                //var student = new Student();
                 var count = 1;
-                foreach (var result in student.Results)
+                foreach (var result in studentModels.Results)
                 {
                     Console.Write($"{count}) {result};  ");
                     count++;
                 }
 
             }
+
+            Console.ReadLine();
         }
     }
 }

@@ -4,7 +4,7 @@ public class Test
 {
     public Guid Id { get; set; }
 
-    public string Question { get; set; }
+    public string QuestionText { get; set; }
 
     public string AVariant { get; set; }
 

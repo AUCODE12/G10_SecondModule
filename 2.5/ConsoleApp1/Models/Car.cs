@@ -4,18 +4,11 @@ public class Car : Vehicle
 {
     public void Refuel(double amount)
     {
-        if (amount > 0)
-        {
-            Fuel += amount;
-        }
-        else
-        {
-            Fuel -= amount;
-        }
+        _fuel += amount;
     }
 
-    public double Drive(double distance)
+    public void Drive(double distance)
     {
-        return distance / Speed;
+        Console.WriteLine(distance / _speed);
     }
 }

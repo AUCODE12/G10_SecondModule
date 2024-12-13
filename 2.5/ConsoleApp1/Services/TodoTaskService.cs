@@ -89,7 +89,7 @@ public class TodoTaskService : ITodoTaskService
 
     private void SaveData()
     {
-        var taskJson = JsonSerializer.Serialize(tasks);
+        var taskJson = JsonSerializer.Serialize(tasks, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(taskDataFilePath, taskJson);
     }
 

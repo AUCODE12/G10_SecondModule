@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Wallet.Api", "E-Wallet.Api\E-Wallet.Api.csproj", "{7388B9AF-4515-46AD-95C1-6C7051EFA3AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7388B9AF-4515-46AD-95C1-6C7051EFA3AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7388B9AF-4515-46AD-95C1-6C7051EFA3AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7388B9AF-4515-46AD-95C1-6C7051EFA3AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7388B9AF-4515-46AD-95C1-6C7051EFA3AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A16B7FF1-F8CE-4E84-82FD-C00BCADE7D2F}
+	EndGlobalSection
+EndGlobal

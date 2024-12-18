@@ -7,12 +7,12 @@ namespace E_Wallet.Api.Repositories;
 public class PlasticCardRepository : IPlasticCardRepository
 {
     private readonly string _path;
-    private List<plasticCard> _cards;
+    private List<PlasticCard> _cards;
 
     public PlasticCardRepository()
     {
         _path = "../../../DataAccess/Data/PlasticCards.json";
-        _cards = new List<plasticCard>();
+        _cards = new List<PlasticCard>();
         if (!File.Exists(_path))
         {
             File.WriteAllText(_path, "[]");
@@ -22,20 +22,41 @@ public class PlasticCardRepository : IPlasticCardRepository
 
     public void CardContains(string cardNumber)
     {
-        throw new NotImplementedException();
+        foreach (var card in _cards)
+        {
+            if (card.CardNumber == cardNumber)
+            {
+                throw new Exception("Bunday plastic card mavjud");
+            }
+        }
     }
 
-    public List<plasticCard> ReadAllPlasticCards()
+    public List<PlasticCard> ReadAllPlasticCards()
     {
-        throw new NotImplementedException();
+        var readFileJson = File.ReadAllText(_path);
+        var writeList = JsonSerializer.Deserialize<List<PlasticCard>>(readFileJson);
+
+        return writeList;
     }
 
-    public List<plasticCard> ReadPlasticCardByBankName(string bankName)
+    public List<PlasticCard> ReadPlasticCardByBankName(string bankName)
     {
-        throw new NotImplementedException();
+        var cardsByBankName = new List<PlasticCard>();
+        foreach (var card in _cards)
+        {
+            if (card.BankName == bankName)
+            {
+                if (card.BankName == bankName)
+                {
+                    cardsByBankName.Add(card);
+                }
+            }
+        }
+
+        return cardsByBankName;
     }
 
-    public plasticCard ReadPlasticCardById(Guid plasticCardId)
+    public PlasticCard ReadPlasticCardById(Guid plasticCardId)
     {
         foreach (var card in _cards)
         {
@@ -51,12 +72,11 @@ public class PlasticCardRepository : IPlasticCardRepository
     public void RemovePlasticCard(Guid plasticCardId)
     {
         var card = ReadPlasticCardById(plasticCardId);
-        var index = _cards.IndexOf(card);
-        _cards[index] = updatePlacticCard;
+        _cards.Remove(card);
         SavaData();
     }
 
-    public void UpdatePlasticCard(plasticCard updatePlacticCard)
+    public void UpdatePlasticCard(PlasticCard updatePlacticCard)
     {
         var card = ReadPlasticCardById(updatePlacticCard.Id);
         var index = _cards.IndexOf(card);
@@ -64,7 +84,7 @@ public class PlasticCardRepository : IPlasticCardRepository
         SavaData();
     }
 
-    public Guid WritePlasticCard(plasticCard plasticCard)
+    public Guid WritePlasticCard(PlasticCard plasticCard)
     {
         _cards.Add(plasticCard);
         SavaData();

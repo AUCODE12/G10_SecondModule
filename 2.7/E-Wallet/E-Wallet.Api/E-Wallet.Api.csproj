@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="DataAccess\Data\" />
-    <Folder Include="Services\DTOs\" />
   </ItemGroup>
 
 </Project>

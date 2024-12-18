@@ -4,17 +4,17 @@ namespace E_Wallet.Api.Repositories;
 
 public interface IPlasticCardRepository
 {
-    Guid WritePlasticCard(plasticCard plasticCard);
+    Guid WritePlasticCard(PlasticCard plasticCard);
 
     void RemovePlasticCard(Guid plasticCardId);
 
-    void UpdatePlasticCard(plasticCard updatePlacticCard);
+    void UpdatePlasticCard(PlasticCard updatePlacticCard);
 
     void CardContains(string cardNumber);
 
-    List<plasticCard> ReadAllPlasticCards();
+    List<PlasticCard> ReadAllPlasticCards();
 
-    List<plasticCard> ReadPlasticCardByBankName(string bankName);
+    List<PlasticCard> ReadPlasticCardByBankName(string bankName);
     
-    plasticCard ReadPlasticCardById(Guid plasticCardId);
+    PlasticCard ReadPlasticCardById(Guid plasticCardId);
 }

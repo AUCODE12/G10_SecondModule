@@ -6,5 +6,7 @@ public class PlasticCardUpdateDto : PlasticCardBaseDto
 
     public string ExpirationDate { get; set; }
 
+    public string CardNumber { get; set; }
+
     public string Password { get; set; }
 }

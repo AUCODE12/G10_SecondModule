@@ -90,6 +90,7 @@ public class PlasticCardService : IPlasticCardService
             BankName = plasticCardUpdateDto.BankName,
             CardHolderName = plasticCardUpdateDto.CardHolderName,
             Password = plasticCardUpdateDto.Password,
+            CardNumber = plasticCardUpdateDto.CardNumber,
         };
     }
 

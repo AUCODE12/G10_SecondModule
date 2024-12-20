@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1.MyList1;
+﻿using System.Linq;
+
+namespace ConsoleApp1.MyList1;
 
 public class FirstMyList<T> : IFirstMyList<T>
 {
@@ -54,7 +56,7 @@ public class FirstMyList<T> : IFirstMyList<T>
     {
         for (var i = 0; i < _count; i++)
         {
-            if (_items.Equals(item))
+            if (_items[i].Equals(item))
             {
                 return i;
             }
@@ -79,16 +81,49 @@ public class FirstMyList<T> : IFirstMyList<T>
     {
         for (var i = 0; i < _count; i++)
         {
-            if (_items.Equals(oldNum))
+            if (_items[i].Equals(oldNum))
             {
                 _items[i] = newNum;
             }
         }
     }
 
+    //list ichida element bor yoki yo'qligini tekshiradi
+    public bool Contains(T item)
+    {
+        if (GetItemIndex(item) == -1)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    // Listni tozalash
+    public void Clear()
+    {
+        for (var i = 0; i < _items.Length; i++)
+        {
+            RemoveItemAt(i);
+        }
+    }
+
+    // list to arr
+    public T[] ToArray()
+    {
+        var arr = new T[_items.Length];
+        for (var i = 0; i < arr.Length; i++)
+        {
+            arr[i] = _items[i];
+        }
+
+        return arr;
+    }
 
 
     // Private
+
+    //List to'lganda listni uzunligini 2 barobarga oshiradi
     private void Resize()
     {
         var _newItems = new T[_items.Length * 2];
@@ -100,6 +135,7 @@ public class FirstMyList<T> : IFirstMyList<T>
         _items = _newItems;
     }
 
+    //kelayotgan index lista bormi yo'qmi tekshiradi
     private void CheckIndex(int index)
     {
         if (0 > index || index >= _count)
@@ -107,4 +143,6 @@ public class FirstMyList<T> : IFirstMyList<T>
             throw new IndexOutOfRangeException();
         }
     }
+
+
 }

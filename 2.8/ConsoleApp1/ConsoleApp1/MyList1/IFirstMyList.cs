@@ -17,4 +17,10 @@ public interface IFirstMyList<T>
     int GetCount();
 
     int GetCapacity();
+
+    bool Contains(T item);
+
+    void Clear();
+
+    T[] ToArray();
 }

@@ -120,9 +120,58 @@ public class FirstMyList<T> : IFirstMyList<T>
         return arr;
     }
 
+    // kelayotgan itemning oxirgisini indexsini qaytaradi
+    public int GetLastIndex(T item)
+    {
+        for (var i = _count - 1; i >= 0; i--)
+        {
+            if (_items[i].Equals(item))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    // Sort
+    public void Sort()
+    {
+          
+    }
+
+    // boshlanish nuqtadan malum bir masofagacha olish
+    public T[] GetRange(int startIndex, int count)
+    {
+        var newArr = new T[count];
+        for (var i = 0; i < count; i++)
+        {
+            newArr[i] = _items[startIndex];
+            startIndex++;
+        }
+
+        return newArr;
+    }
+    
+    // Malum indexdagi itemni, boshqa itemga o'zgartiradi
+    public void InsertAt(int index, T item)
+    {
+        _items[index] = item;
+    }
+
+    // listini tekarisiga o'giradi
+    public void Reverse()
+    {
+        var newItems = new T[_items.Length];
+        for (var i = _items.Length - 1; i >= 0; i--)
+        {
+            newItems[_items.Length - 1 - i] = _items[i];
+        }
+
+        _items = newItems;
+    }
 
     // Private
-
     //List to'lganda listni uzunligini 2 barobarga oshiradi
     private void Resize()
     {
@@ -143,6 +192,4 @@ public class FirstMyList<T> : IFirstMyList<T>
             throw new IndexOutOfRangeException();
         }
     }
-
-
 }

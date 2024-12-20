@@ -2,7 +2,6 @@
 
 public class SchoolCreateDto : SchoolBaseDto
 {
-    public Guid Id { get; set; }
 
     public int ZipCode { get; set; }
 }

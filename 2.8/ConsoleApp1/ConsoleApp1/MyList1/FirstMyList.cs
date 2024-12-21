@@ -142,7 +142,25 @@ public class FirstMyList<T> : IFirstMyList<T>
     // Sort
     public void Sort()
     {
-          
+        for (var i = 0; i < _count - 1; i++)
+        {
+            int minIndex = i;
+
+            for (var j = i + 1; j < _count; j++)
+            {
+                if (Comparer<T>.Default.Compare(_items[j], _items[minIndex]) < 0)
+                {
+                    minIndex = j;
+                }
+            }
+                
+            if (minIndex != i)
+            {
+                T temp = _items[i];
+                _items[i] = _items[minIndex];
+                _items[minIndex] = temp;
+            }
+        }
     }
 
     // boshlanish nuqtadan malum bir masofagacha olish
@@ -161,7 +179,17 @@ public class FirstMyList<T> : IFirstMyList<T>
     // Malum indexdagi itemni, boshqa itemga o'zgartiradi
     public void InsertAt(int index, T item)
     {
+        if (_items.Count() == _count)
+        {
+            Resize();
+        }
+        CheckIndex(index);
+        for (var i = _count; i >= index; i--)
+        {
+            _items[i + 1] = _items[i];
+        }
         _items[index] = item;
+        _count++;
     }
 
     // listini tekarisiga o'giradi

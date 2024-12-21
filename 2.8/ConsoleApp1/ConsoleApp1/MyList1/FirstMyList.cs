@@ -111,6 +111,11 @@ public class FirstMyList<T> : IFirstMyList<T>
     // list to arr
     public T[] ToArray()
     {
+        if (_items.Count() == _count)
+        {
+            return _items;
+        }
+
         var arr = new T[_items.Length];
         for (var i = 0; i < arr.Length; i++)
         {

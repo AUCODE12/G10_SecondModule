@@ -1,0 +1,159 @@
+1. String:
+- Reference type that represents text
+- Immutable (cannot be changed after creation)
+- String operations create new string instances
+- Can be created using string literals or String class
+
+2. StringBuilder:
+- Mutable string class for efficient string manipulation
+- Better performance for multiple string operations
+- Modifies string in place without creating new instances
+- Methods: Append(), Insert(), Remove(), Replace()
+
+3. Array vs List:
+Array:
+- Fixed size
+- Faster access
+- Continuous memory allocation
+List:
+- Dynamic size
+- More flexible
+- Better for adding/removing elements
+- More memory overhead
+
+4. ref vs out:
+ref:
+- Must be initialized before passing
+- Value can be modified
+- Passes reference to variable
+out:
+- Must be assigned in method
+- No initialization required
+- Used for multiple return values
+
+5. Static:
+- Belongs to type rather than instance
+- Shared across all instances
+- Cannot access non-static members
+- Loaded when program starts
+
+6. Class:
+- Blueprint for objects
+- Reference type
+- Contains fields, properties, methods
+- Supports inheritance
+- Can implement interfaces
+
+7. Object:
+- Instance of a class
+- Contains real data
+- Base type of all types in C#
+- Has methods like ToString(), Equals()
+
+8. Abstraction:
+- Hiding complex implementation details
+- Shows only necessary features
+- Achieved through interfaces and abstract classes
+- Reduces complexity
+
+9. Inheritance:
+- Reuse code from parent class
+- "is-a" relationship
+- Single inheritance in C#
+- Supports multiple interface implementation
+
+10. Encapsulation:
+- Data hiding
+- Bundling data and methods
+- Access modifiers (public, private, protected)
+- Properties for controlled access
+
+11. OOP (Object-Oriented Programming):
+- Programming paradigm
+- Based on objects containing data and code
+- Four pillars: Encapsulation, Inheritance, Polymorphism, Abstraction
+- Promotes reusability and maintainability
+
+12. Interface:
+- Contract for class implementation
+- Contains only declarations
+- Multiple inheritance possible
+- No implementation details
+
+13. Value Type:
+- Stored on stack
+- Direct value storage
+- Examples: int, float, struct
+- Copied when assigned
+
+14. Reference Type:
+- Stored on heap
+- Contains reference to memory
+- Examples: class, interface, delegate
+- Shared when assigned
+
+15. Casting Types:
+- Converting between types
+- Implicit vs Explicit casting
+- Boxing/Unboxing
+- Type conversion methods
+
+16. Repository & Service Pattern:
+Repository:
+- Data access abstraction
+- CRUD operations
+- Database interaction
+Service:
+- Business logic layer
+- Uses repositories
+- Application operations
+
+17. DTO (Data Transfer Object):
+- Objects for data transfer
+- No business logic
+- Reduces network calls
+- Data mapping
+
+18. Constructor:
+- Special method for object initialization
+- Same name as class
+- No return type
+- Can be overloaded
+
+19. Object (Already covered in #7)
+
+20. Interface vs Abstract Class:
+Interface:
+- Pure abstraction
+- Multiple inheritance
+- No implementation
+Abstract Class:
+- Partial implementation
+- Single inheritance
+- Can have fields
+
+21. Abstract Class:
+- Cannot be instantiated
+- May contain abstract and concrete members
+- Must be inherited
+- Can have constructor
+
+22. Has-a, Is-a:
+Has-a:
+- Composition relationship
+- Object contains another object
+Is-a:
+- Inheritance relationship
+- Child is type of parent
+
+23. Generic:
+- Type-safe code reuse
+- Placeholder for type
+- Better performance
+- Type constraints
+
+24. Struct:
+- Value type
+- Stored on stack
+- Cannot inherit
+- Good for small data structures

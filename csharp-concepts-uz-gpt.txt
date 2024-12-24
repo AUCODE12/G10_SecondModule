@@ -1,0 +1,96 @@
+15. Casting Types:
+Turlarni o'zgartirish (Casting): Bu bir turdagi ma'lumotni boshqa turga o'tkazish jarayoni. Masalan, int turidagi o'zgaruvchini double turiga o'tkazish.
+
+Implicit (avtomatik) casting: Bu turdagi o'zgartirishlar tizim tomonidan avtomatik ravishda amalga oshiriladi. Masalan, kichik turdagi qiymat katta turdagi qiymatga aylantirilishi mumkin, chunki ma'lumotlar yo'qotilmaydi. Misol: int a = 5; double b = a;.
+
+Explicit (qo'lda) casting: Bunda dasturchi tur o'zgarishini aniq belgilaydi. Misol: double a = 9.78; int b = (int)a; (bu yerda decimal qism yo'qoladi).
+
+Boxing va Unboxing: Boxing — qiymat turidagi ob'ektni object tipiga o'zgartirish. Unboxing — ob'ektni yana asl turiga qaytarish. Bu jarayonlar ko'proq ma'lumot turini saqlashda ishlatiladi, ammo ishlashda bir oz resurslarni talab qiladi.
+
+Type conversion methods: Bu metodlar tur o'zgartirishni amalga oshiradi, masalan, Convert.ToInt32(), Parse(), yoki TryParse(). Bu metodlar ko'pincha foydalanuvchidan olingan ma'lumotlarni turiga moslashtirish uchun ishlatiladi.
+
+16. Repository & Service Pattern:
+Repository Pattern: Bu dizayn patterni ma'lumotlarga kirish uchun mantiqiy qatlam yaratadi. Bu qatlam ma'lumotlar manbai (masalan, baza) bilan ishlashni abstraksiya qiladi. CRUD (Create, Read, Update, Delete) amallarini bajarish uchun metodlar taqdim etadi.
+
+CRUD operations: Ma'lumotlar bazasida yaratish, o'qish, yangilash va o'chirish operatsiyalarini bajaradigan metodlar.
+
+Database interaction: Repository ma'lumotlar bazasi bilan bevosita ishlashni o'z zimmasiga oladi, ammo biznes mantiqni ajratish orqali uning murakkabligini kamaytiradi.
+
+Service Pattern: Bu patternda biznes mantiqni bajaradigan qatlam yaratish uchun ishlatiladi. Servis qatlamlari Repositorylardan foydalanib, ilova amallarini bajaradi.
+
+Business logic layer: Bu qatlamda ilovaning asosiy ishlash jarayonlari amalga oshiriladi, masalan, foydalanuvchiga tegishli operatsiyalar.
+
+Uses repositories: Servislar Repositorydan foydalangan holda ma'lumotlarni olish va yangilash operatsiyalarini bajaradi.
+
+Application operations: Servislar ilovadagi barcha operatsiyalarni boshqaradi, masalan, foydalanuvchi tomonidan amalga oshirilgan so'rovlar.
+
+17. DTO (Data Transfer Object):
+Data Transfer Object: Bu obyektlar ma'lumotlarni tarmoq yoki tizimlar o'rtasida uzatishda ishlatiladi. Ular odatda oddiy ma'lumotlarni saqlaydi va murakkab biznes mantiqni o'z ichiga olmaydi.
+
+No business logic: DTOlar faqat ma'lumotlar bilan ishlaydi va ularda biznes mantiqi bo'lmaydi.
+
+Reduces network calls: DTOlarni ishlatish tarmoq orqali ko'p va kichik so'rovlarni birlashtirishga yordam beradi, shuningdek, ma'lumotni samarali tarzda uzatish imkonini beradi.
+
+Data mapping: DTOlar ma'lumotlarni turli tizimlar o'rtasida to'g'ri formatda o'tkazish uchun ishlatiladi.
+
+18. Constructor:
+Constructor: Bu metod sinf (class)ning ob'ektlarini yaratish va dastlabki qiymatlarini o'rnatish uchun ishlatiladi.
+
+Special method: Konstruktor sinfning ob'ektini yaratish uchun maxsus metoddir.
+
+Same name as class: Konstruktor metodining nomi sinfning nomiga teng bo'ladi.
+
+No return type: Konstruktor metodida hech qanday qaytish turi bo'lmaydi.
+
+Can be overloaded: Konstruktorni ortiqcha aniqlash (overloading) mumkin, ya'ni bir nechta konstruktorlar bir xil sinfda turli parametrlar bilan ishlashi mumkin.
+
+19. Object (Already covered in #7):
+Object: Obyektlar C# dasturlash tilida ma'lumotlar saqlash va ishlash uchun asosiy qurilmalardir. Ular sinfning instansiyalaridir.
+20. Interface vs Abstract Class:
+Interface:
+
+Pure abstraction: Interface faqat abstraktsiya, ya'ni metodlarning imzolari bo'ladi, ammo ularning amalga oshirilishi yo'q.
+
+Multiple inheritance: Interface ko'plab sinflarga qaraganda bir vaqtning o'zida bir nechta interfeyslarni meros qilib olish imkoniyatini beradi.
+
+No implementation: Interface metodlarning faqat nomlarini taqdim etadi, ular amalga oshirilmaydi.
+
+Abstract Class:
+
+Partial implementation: Abstract sinfda ba'zi metodlar amalga oshirilgan bo'lishi mumkin, lekin barcha metodlar amalga oshirilmagan.
+
+Single inheritance: Abstract sinf faqat bitta sinfdan meros qilib olinishi mumkin.
+
+Can have fields: Abstract sinfda o'zgaruvchilar va xususiyatlar mavjud bo'lishi mumkin.
+
+21. Abstract Class:
+Cannot be instantiated: Abstract sinfni bevosita yaratish mumkin emas, faqat undan meros olgan sinflar orqali ob'ekt yaratish mumkin.
+
+May contain abstract and concrete members: Abstract sinfda abstract (amalga oshirilmagan) va konkret (amalga oshirilgan) metodlar birgalikda bo'lishi mumkin.
+
+Must be inherited: Abstract sinfni ishlatish uchun undan meros olish kerak.
+
+Can have constructor: Abstract sinfda konstruktor bo'lishi mumkin, bu sinfni meros olgan sinflar tomonidan chaqiriladi.
+
+22. Has-a, Is-a:
+Has-a:
+Composition relationship: Bu ob'ektlar o'rtasidagi "egalik" munosabatini bildiradi, ya'ni bir ob'ekt boshqa ob'ektni o'z ichiga oladi.
+Is-a:
+Inheritance relationship: Bu meros olish orqali bog'lanishdir. Dastlabki sinfni (ota sinf) kengaytirgan (bola sinf) ob'ektlar o'zini shunday ko'rsatadi: "Men bunday turman".
+23. Generic:
+Type-safe code reuse: Genericlar turlarni aniqlash va ular bilan ishlashda xavfsizligini ta'minlaydi. Bu turdagi ma'lumotlar bilan ishlashda xatoliklarni oldini oladi.
+
+Placeholder for type: Genericlar tipni o'zgaruvchi sifatida ishlatadi. Masalan, List<T> da T bu placeholder bo'lib, turini kodni yozishda aniqlanadi.
+
+Better performance: Type-safe genericlar kodning ishlash tezligini oshiradi, chunki ularning ishlashida o'zgaruvchilarni to'g'ridan-to'g'ri ishlatish mumkin bo'ladi.
+
+Type constraints: Genericlarga ma'lum turdagi cheklovlarni o'rnatish mumkin, masalan, T faqat IComparableni amalga oshirgan turlarga qarshi bo'lishi kerak.
+
+24. Struct:
+Value type: Structlar qiymat turlaridir, ya'ni ular ma'lumotni o'z ichida saqlaydi.
+
+Stored on stack: Structlar stackda saqlanadi, bu esa ular uchun tezroq ishlash imkonini beradi.
+
+Cannot inherit: Structlar meros olishni qo'llab-quvvatlamaydi, shuning uchun ular faqat o'zlarining metodlari va xususiyatlariga ega bo'ladi.
+
+Good for small data structures: Structlar kichik hajmdagi ma'lumotlar uchun qulay va samarali bo'ladi, chunki ular tez ishlash uchun stackda saqlanadi.

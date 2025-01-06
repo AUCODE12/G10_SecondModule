@@ -19,7 +19,7 @@ public class PropertyRepository : IPropertyRepository
         _properties = ReadAllProperties();
     }
 
-    public void DeleteProperty(Guid id)
+    public void RemoveProperty(Guid id)
     {
         var fromDb = ReadPropertyById(id);
         _properties.Remove(fromDb);

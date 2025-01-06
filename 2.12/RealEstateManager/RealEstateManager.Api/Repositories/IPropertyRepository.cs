@@ -12,5 +12,5 @@ public interface IPropertyRepository
 
     void UpdateProperty(Property property);
 
-    void DeleteProperty(Guid id);
+    void RemoveProperty(Guid id);
 }

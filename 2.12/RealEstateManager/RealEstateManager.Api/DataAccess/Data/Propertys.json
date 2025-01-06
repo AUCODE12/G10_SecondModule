@@ -1,0 +1,27 @@
+[
+  {
+    "Id": "c3559554-bdfb-4e5d-8ffc-1e59bcafd6e7",
+    "Name": "Ltyr",
+    "Location": "Navoi",
+    "Price": 1000,
+    "IsAvailable": true,
+    "Type": "Office"
+  },
+  {
+    "Id": "d7cc7bc9-8eec-4d2e-a930-ac27d8783f65",
+    "Name": "asda",
+    "Location": "Buxoro",
+    "Price": 900,
+    "IsAvailable": false,
+    "Type": "Uy"
+  },
+  {
+    "Id": "07f99313-8840-4a21-aaba-7a55cf978b78",
+    "Name": "ghjgf",
+    "Location": "Toshkent",
+    "Price": 1500,
+    "IsAvailable": true,
+    "Type": "Tijorat binosi"
+  }
+
+]

@@ -6,7 +6,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(IsValid("({[)]}"));
+        Console.WriteLine(RemoveElement([3, 2, 2, 3], 3));
     }
 
     public static int RomanToInt(string s)
@@ -89,4 +89,25 @@ internal class Program
 
         return stack.Count == 0;
     }
+
+    public static int RemoveElement(int[] nums, int val)
+    {
+        var count = 0;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] != val)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    //public static List<int> MergeTwoLists(List<int> list1, List<int> list2)
+    //{
+    //    list1.AddRange(list2);
+    //    list1.Sort();
+    //    return list1;
+    //}
 }
